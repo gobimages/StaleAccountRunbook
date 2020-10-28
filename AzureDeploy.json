@@ -8,7 +8,7 @@
     "Username_Email": {
         "type": "string",
         "metadata": {
-            "description": "description"
+            "description": "Account used to send email"
         }
     },
     "credentials_Runbook_password": {
@@ -17,11 +17,10 @@
     "Username_Runbook": {
         "type": "string",
         "metadata": {
-            "description": "description"
+            "description": "Account used to run the Script"
         }
     },
     "automationAccounts_name": {
-      "defaultValue": "StaleAccount",
       "type": "String"
     }
   },
