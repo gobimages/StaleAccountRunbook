@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "credentials_Email_password": {
+      "value": ""
+    },
+    "Username_Email": {
+      "value": ""
+    },
+    "credentials_Runbook_password": {
+      "value": ""
+    },
+    "Username_Runbook": {
+      "value": "value"
+    },
+    "automationAccounts_name": {
+      "value": ""
+    }
+  }
+}
