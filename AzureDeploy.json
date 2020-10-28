@@ -78,7 +78,7 @@
     {
       "type": "Microsoft.Automation/automationAccounts/credentials",
       "apiVersion": "2015-10-31",
-      "name": "[concat(parameters('automationAccounts_StaleAccount_name'), '/UserLogin')]",
+      "name": "[concat(parameters('automationAccounts_name'), '/UserLogin')]",
       "dependsOn": [
         "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_name'))]"
       ],
@@ -206,3 +206,5 @@
     }
   ]
 }
+
+
