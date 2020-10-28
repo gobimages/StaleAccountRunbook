@@ -21,7 +21,6 @@
       }
     },
     "automationAccounts_name": {
-      "defaultValue": "StaleAccount",
       "type": "String"
     }
   },
