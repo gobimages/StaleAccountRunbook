@@ -6,19 +6,19 @@
       "type": "SecureString"
     },
     "Username_Email": {
-        "type": "string",
-        "metadata": {
-            "description": "description"
-        }
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
     },
     "credentials_Runbook_password": {
       "type": "SecureString"
     },
     "Username_Runbook": {
-        "type": "string",
-        "metadata": {
-            "description": "description"
-        }
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
     },
     "automationAccounts_name": {
       "defaultValue": "StaleAccount",
@@ -26,7 +26,7 @@
     }
   },
   "variables": {
-      "Link": "https://raw.githubusercontent.com/gobimages/StaleAccountRunbook/main/Runbook.ps1"
+    "Link": "https://raw.githubusercontent.com/gobimages/StaleAccountRunbook/main/Runbook.ps1"
   },
   "resources": [
     {
@@ -37,29 +37,6 @@
       "properties": {
         "sku": {
           "name": "Basic"
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Automation/automationAccounts/connectionTypes",
-      "apiVersion": "2015-10-31",
-      "name": "[concat(parameters('automationAccounts_name'), '/Azure')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_name'))]"
-      ],
-      "properties": {
-        "isGlobal": true,
-        "fieldDefinitions": {
-          "AutomationCertificateName": {
-            "isEncrypted": false,
-            "isOptional": false,
-            "type": "System.String"
-          },
-          "SubscriptionID": {
-            "isEncrypted": false,
-            "isOptional": false,
-            "type": "System.String"
-          }
         }
       }
     },
@@ -101,11 +78,9 @@
         "logProgress": false,
         "logActivityTrace": 0,
         "publishContentLink": {
-            "uri": "[variables('Link')]"
+          "uri": "[variables('Link')]"
         }
       }
     }
   ]
 }
-
-
