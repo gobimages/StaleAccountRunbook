@@ -12,7 +12,13 @@
       "value": ""
     },
     "Username_Runbook": {
-      "value": "value"
+      "value": ""
+    },
+    "TenantID": {
+      "value": ""
+    },
+    "EmailTo": {
+      "value": ""
     },
     "automationAccounts_name": {
       "value": ""
