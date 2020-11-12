@@ -20,6 +20,18 @@
         "description": "description"
       }
     },
+    "TenantID": {
+        "type": "string",
+        "metadata": {
+            "description": "Tenant ID"
+        }
+    },
+    "EmailTo": {
+        "type": "string",
+        "metadata": {
+            "description": "destination email address"
+        }
+    },
     "automationAccounts_name": {
       "type": "String"
     }
@@ -61,6 +73,26 @@
       "properties": {
         "userName": "[parameters('Username_Runbook')]",
         "password": "[parameters('credentials_Runbook_password')]"
+      }
+    },
+    {
+      "name": "string",
+      "type": "Microsoft.Automation/automationAccounts/variables",
+      "apiVersion": "2015-10-31",
+      "properties": {
+        "value": "[parameters('TenantID')]",
+        "description": "Tenant ID",
+        "isEncrypted": false
+      }
+    },
+     {
+      "name": "string",
+      "type": "Microsoft.Automation/automationAccounts/variables",
+      "apiVersion": "2015-10-31",
+      "properties": {
+        "value": "[parameters('EmailTo')]",
+        "description": "Email Address To Receipients",
+        "isEncrypted": false
       }
     },
     {
