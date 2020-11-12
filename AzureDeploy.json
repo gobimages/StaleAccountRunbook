@@ -79,6 +79,7 @@
       "name": "[concat(parameters('automationAccounts_name'), '/TenantID')]",
       "type": "Microsoft.Automation/automationAccounts/variables",
       "apiVersion": "2015-10-31",
+      "dependsOn": ["[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_name'))]"],
       "properties": {
         "value": "[parameters('TenantID')]",
         "description": "Tenant ID",
@@ -88,6 +89,7 @@
      {
       "name": "[concat(parameters('automationAccounts_name'), '/EmailTo')]",
       "type": "Microsoft.Automation/automationAccounts/variables",
+      "dependsOn": ["[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_name'))]"],
       "apiVersion": "2015-10-31",
       "properties": {
         "value": "[parameters('EmailTo')]",
