@@ -1,22 +1,26 @@
-$Properties = @()
 $Login = Get-AutomationPSCredential -Name 'Login'
 $UserLogin = Get-AutomationPSCredential -Name 'UserLogin'
-Connect-AzureAD -Credential $UserLogin
+Connect-AzureAD -Credential $UserLogin -TenantId $TenantID
 $GDate = ((Get-Date).AddMonths(-1)).ToString("yyyy-MM-dd")
-Get-AzureADUser -All $true | foreach $_ {
-    if ($_.userPrincipalName -notmatch "#EXT#") {
-        if ((Get-AzureADAuditSignInLogs -Filter "userPrincipalName eq '$($_.UserPrincipalName)' and CreatedDateTime gt $GDate") -eq $null) {
-            $properties += [PSCustomObject]@{
-                UserPrincipalName = $_.UserPrincipalName
-                DisplayName       = $_.DisplayName
-                "Account Enabled" = $_.AccountEnabled
-            }
-            $Properties | export-csv "c:\temp\data.csv" -NoTypeInformation -Append
+$ADUsersAll = Get-AzureADUser -All $true
+$Result = @()
+foreach ($U in $user) {
+    if (Get-AzureADAuditSignInLogs -Filter "UserId eq '$($U.ObjectId)' and CreatedDateTime gt $GDate") {
+        $Result += [PSCustomObject]@{
+            Displayame        = $U.DisplayName
+            UserPrincipalName = $U.UserPrincipalName
+            ActiveAccount     = "Yes"
         }
-        $properties = $null
     }
-    
+    Else {
+        $Result += [PSCustomObject]@{
+            Displayame        = $U.DisplayName
+            UserPrincipalName = $U.UserPrincipalName
+            ActiveAccount     = "No"
+        }
+    }
+    $Result | Export-Csv "c:\temp\data.csv" -NoTypeInformation -Append
 }
-Send-MailMessage -From "$($Login.UserName)" -To 'v-gomage@microsoft.com ' -Subject 'Sending the Attachment' -Body "Forgot to send the attachment. Sending now." -Attachments c:\temp\data.csv -Priority High -DeliveryNotificationOption OnSuccess, OnFailure -SmtpServer 'outlook.office365.com' -Credential $Login -UseSSL -Port 587
-Remove-Item "c:\temp\data.csv" -force
 
+Send-MailMessage -From "$($Login.UserName)" -To $Destination -Subject 'Sending the Attachment' -Body "Forgot to send the attachment. Sending now." -Attachments c:\temp\data.csv -Priority High -DeliveryNotificationOption OnSuccess, OnFailure -SmtpServer 'outlook.office365.com' -Credential $Login -UseSSL -Port 587
+Remove-Item "c:\temp\data.csv" -force
