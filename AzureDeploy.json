@@ -76,7 +76,7 @@
       }
     },
     {
-      "name": "string",
+      "name": "[concat(parameters('automationAccounts_name'), '/TenantID')]",
       "type": "Microsoft.Automation/automationAccounts/variables",
       "apiVersion": "2015-10-31",
       "properties": {
@@ -86,7 +86,7 @@
       }
     },
      {
-      "name": "string",
+      "name": "[concat(parameters('automationAccounts_name'), '/EmailTo')]",
       "type": "Microsoft.Automation/automationAccounts/variables",
       "apiVersion": "2015-10-31",
       "properties": {
